@@ -3,52 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Автоматическое открытие в разных браузерах</title>
-<script>
-function openInChrome(url) {
-    window.location.href = "googlechrome://" + url;
-}
-
-function openInEdge(url) {
-    window.location.href = "microsoft-edge://" + url;
-}
-
-function openInMiBrowser(url) {
-    window.location.href = "mibrowser://" + url;
-}
-
-function openInBrowsers(url) {
-    var urls = ['www.example.com', 'www.example2.com', 'www.example3.com']; // список URL-адресов для открытия
-    var i = 0;
-
-    function openNext() {
-        if (i < urls.length) {
-            var url = urls[i];
-            i++;
-
-            if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
-                openInChrome(url);
-            } else if (navigator.userAgent.toLowerCase().indexOf('edge') > -1) {
-                openInEdge(url);
-            } else if (navigator.userAgent.toLowerCase().indexOf('mi') > -1 || navigator.userAgent.toLowerCase().indexOf('xiaomi') > -1) {
-                openInMiBrowser(url);
-            } else {
-                // Если не удалось определить браузер, открываем URL через стандартный протокол HTTP
-                window.open("http://" + url);
-            }
-
-            setTimeout(openNext, 3000); // Пауза перед открытием следующего URL
-        }
-    }
-
-    openNext();
-}
-</script>
+<title>Выбор браузера</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    text-align: center;
+    margin-top: 100px;
+  }
+</style>
 </head>
 <body>
 
+<div class="container">
+  <h2>Выберите браузер:</h2>
+  <button onclick="openBrowser('chrome')">Google Chrome</button>
+  <button onclick="openBrowser('firefox')">Mozilla Firefox</button>
+  <button onclick="openBrowser('edge')">Microsoft Edge</button>
+</div>
+
 <script>
-openInBrowsers();
+function openBrowser(browser) {
+  var url = 'https://onlyfans.com/rita_hottie/c21'; // Замените 'http://example.com' на URL вашего сайта
+  switch(browser) {
+    case 'chrome':
+      window.open(url, '_blank', 'location=yes,menubar=yes,status=yes');
+      break;
+    case 'firefox':
+      window.open(url, '_blank', 'location=yes,menubar=yes,status=yes');
+      break;
+    case 'edge':
+      window.open(url, '_blank', 'location=yes,menubar=yes,status=yes');
+      break;
+    default:
+      alert('Выберите браузер для открытия сайта.');
+  }
+}
 </script>
 
 </body>
