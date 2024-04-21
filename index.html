@@ -1,15 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Автоматическое открытие в разных браузерах</title>
+<script>
+function openInChrome(url) {
+    window.location.href = "googlechrome://" + url;
+}
+
+function openInEdge(url) {
+    window.location.href = "microsoft-edge://" + url;
+}
+
+function openInMiBrowser(url) {
+    window.location.href = "mibrowser://" + url;
+}
+
+function openInBrowsers(url) {
+    var urls = ['www.example.com', 'www.example2.com', 'www.example3.com']; // список URL-адресов для открытия
+    var i = 0;
+
+    function openNext() {
+        if (i < urls.length) {
+            var url = urls[i];
+            i++;
+
+            if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+                openInChrome(url);
+            } else if (navigator.userAgent.toLowerCase().indexOf('edge') > -1) {
+                openInEdge(url);
+            } else if (navigator.userAgent.toLowerCase().indexOf('mi') > -1 || navigator.userAgent.toLowerCase().indexOf('xiaomi') > -1) {
+                openInMiBrowser(url);
+            } else {
+                // Если не удалось определить браузер, открываем URL через стандартный протокол HTTP
+                window.open("http://" + url);
+            }
+
+            setTimeout(openNext, 3000); // Пауза перед открытием следующего URL
+        }
+    }
+
+    openNext();
+}
+</script>
 </head>
 <body>
-    <script>
-        window.onload = function() {
-            window.location.href = 'tel:?body=https://5sim.biz';
-        }
-    </script>
+
+<script>
+openInBrowsers();
+</script>
+
 </body>
 </html>
