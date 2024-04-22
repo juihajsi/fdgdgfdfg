@@ -1,35 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Определение операционной системы</title>
+    <title>Получение информации о браузере</title>
 </head>
 <body>
+    <script>
+        // Функция для получения информации о браузере
+        function getBrowserInfo() {
+            var userAgent = window.navigator.userAgent;
+            var browserName;
+            var browserVersion;
 
-<div id="os-info"></div>
+            // Определение браузера
+            if (userAgent.indexOf("Firefox") > -1) {
+                browserName = "Firefox";
+            } else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
+                browserName = "Opera";
+            } else if (userAgent.indexOf("Trident") > -1) {
+                browserName = "Internet Explorer";
+            } else if (userAgent.indexOf("Edge") > -1) {
+                browserName = "Microsoft Edge";
+            } else if (userAgent.indexOf("Chrome") > -1) {
+                browserName = "Chrome";
+            } else if (userAgent.indexOf("Safari") > -1) {
+                browserName = "Safari";
+            } else {
+                browserName = "Unknown";
+            }
 
-<script type="text/javascript">
-  // Функция для определения операционной системы и вывода результата на страницу
-  function detectOS() {
-    const userAgent = window.navigator.userAgent;
-    const isiOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-    const isAndroid = /Android/.test(userAgent);
+            // Получение версии браузера
+            var versionStartIndex = userAgent.indexOf(browserName) + browserName.length + 1;
+            var versionEndIndex = userAgent.indexOf(" ", versionStartIndex);
+            browserVersion = userAgent.substring(versionStartIndex, versionEndIndex);
 
-    if (isiOS) {
-      return "iOS";
-    } else if (isAndroid) {
-      return "Android";
-    } else {
-      return "Неизвестно";
-    }
-  }
+            // Вывод информации о браузере в консоль
+            console.log("Браузер: " + browserName);
+            console.log("Версия: " + browserVersion);
 
-  // Получаем ссылку на элемент, в который будем выводить информацию об операционной системе
-  const osInfoElement = document.getElementById('os-info');
+            // Вернуть объект с информацией о браузере
+            return {
+                name: browserName,
+                version: browserVersion
+            };
+        }
 
-  // Получаем операционную систему и выводим её на страницу
-  const os = detectOS();
-  osInfoElement.innerHTML = "Операционная система: " + os;
-</script>
+        // Вызов функции и сохранение информации о браузере
+        var browserInfo = getBrowserInfo();
 
+        // Пример использования информации о браузере
+        alert("Вы используете " + browserInfo.name + " версии " + browserInfo.version);
+    </script>
 </body>
 </html>
