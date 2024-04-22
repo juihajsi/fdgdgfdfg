@@ -4,59 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Превью сайта</title>
-  <style>
-    #preview {
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 100px; /* настройте положение превью как вам нужно */
-      width: 200px; /* настройте размер превью как вам нужно */
-      height: 150px; /* настройте размер превью как вам нужно */
-      border: 1px solid #ccc;
-      background-color: #fff;
-      z-index: 9999;
-      overflow: hidden;
-    }
-  </style>
+  
 </head>
 <body>
 
-<button id="myButton">Зажми меня</button>
-<div id="preview"></div>
+<h2>Absolute URLs</h2>
+<p><a href="https://www.w3.org/">W3C</a></p>
+<p><a href="https://www.google.com/">Google</a></p>
 
-<script>
-  var button = document.getElementById("myButton");
-  var preview = document.getElementById("preview");
-  var isButtonPressed = false;
-
-  button.addEventListener("mousedown", function() {
-    isButtonPressed = true;
-    showPreview();
-  });
-
-  button.addEventListener("mouseup", function() {
-    isButtonPressed = false;
-    hidePreview();
-  });
-
-  button.addEventListener("mouseleave", function() {
-    if (isButtonPressed) {
-      isButtonPressed = false;
-      hidePreview();
-    }
-  });
-
-  function showPreview() {
-    var previewContent = "<iframe src='https://example.com' width='100%' height='100%' frameborder='0'></iframe>";
-    preview.innerHTML = previewContent;
-    preview.style.display = "block";
-  }
-
-  function hidePreview() {
-    preview.style.display = "none";
-    preview.innerHTML = "";
-  }
-</script>
+<h2>Relative URLs</h2>
+<p><a href="html_images.asp">HTML Images</a></p>
+<p><a href="/css/default.asp">CSS Tutorial</a></p>
 
 </body>
 </html>
