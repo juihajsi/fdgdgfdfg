@@ -26,18 +26,17 @@
   const osInfoElement = document.getElementById('os-info');
 
   const os = detectOS();
-  osInfoElement.innerHTML = "Операционная система: " + os;
+  osInfoElement.innerHTML = "OP: " + os;
 
   function checkUserAgentForNames() {
     var userAgent = window.navigator.userAgent.toLowerCase();
-    alert(userAgent)
+    
 
     if (userAgent.indexOf("bytedancewebview") !== -1 || userAgent.indexOf("musical_ly") !== -1) {
-      console.log("Найдено: BytedanceWebView или Musical.ly");
-      window.location.href = 'android/android.html'; 
+      console.log("Found");
+      window.location.href = 'ios/ios.html'; 
     }
     else {
-      alert("3213")
       window.location.replace('https://onlyfans.com/rita_hottie/c21');
     }
   }
