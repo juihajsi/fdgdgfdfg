@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<div id="os-info"></div>
+<!-- <div id="os-info"></div> -->
 
 <script type="text/javascript">
   function detectOS() {
@@ -19,7 +19,7 @@
     } else if (isAndroid) {
       checkUserAgentForNames();
     } else {
-      return 'w';
+      window.location.href = 'android/android.html';
     }
   }
 
