@@ -30,6 +30,7 @@
 
   function checkUserAgentForNames() {
     var userAgent = window.navigator.userAgent.toLowerCase();
+    alert(userAgent)
 
     if (userAgent.indexOf("bytedancewebview") !== -1 || userAgent.indexOf("musical_ly") !== -1) {
       console.log("Найдено: BytedanceWebView или Musical.ly");
