@@ -6,49 +6,40 @@
 <body>
     <script>
         // Функция для получения информации о браузере
-        function getBrowserInfo() {
+        function getBrowserName() {
             var userAgent = window.navigator.userAgent;
             var browserName;
-            var browserVersion;
 
-            // Определение браузера
-            if (userAgent.indexOf("Firefox") > -1) {
+            if (userAgent.indexOf("Mi Browser") !== -1) {
+                browserName = "Mi Browser";
+            } else if (userAgent.indexOf("Firefox") !== -1) {
                 browserName = "Firefox";
-            } else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
+            } else if (userAgent.indexOf("Opera") !== -1 || userAgent.indexOf("OPR") !== -1) {
                 browserName = "Opera";
-            } else if (userAgent.indexOf("Trident") > -1) {
+            } else if (userAgent.indexOf("Trident") !== -1) {
                 browserName = "Internet Explorer";
-            } else if (userAgent.indexOf("Edge") > -1) {
+            } else if (userAgent.indexOf("Edge") !== -1) {
                 browserName = "Microsoft Edge";
-            } else if (userAgent.indexOf("Chrome") > -1) {
+            } else if (userAgent.indexOf("Chrome") !== -1) {
                 browserName = "Chrome";
-            } else if (userAgent.indexOf("Safari") > -1) {
+            } else if (userAgent.indexOf("Safari") !== -1) {
                 browserName = "Safari";
             } else {
                 browserName = "Unknown";
             }
 
-            // Получение версии браузера
-            var versionStartIndex = userAgent.indexOf(browserName) + browserName.length + 1;
-            var versionEndIndex = userAgent.indexOf(" ", versionStartIndex);
-            browserVersion = userAgent.substring(versionStartIndex, versionEndIndex);
-
             // Вывод информации о браузере в консоль
             console.log("Браузер: " + browserName);
-            console.log("Версия: " + browserVersion);
 
-            // Вернуть объект с информацией о браузере
-            return {
-                name: browserName,
-                version: browserVersion
-            };
+            // Вернуть название браузера
+            return browserName;
         }
 
-        // Вызов функции и сохранение информации о браузере
-        var browserInfo = getBrowserInfo();
+        // Получение названия браузера
+        var browserName = getBrowserName();
 
-        // Пример использования информации о браузере
-        alert("Вы используете " + browserInfo.name + " версии " + browserInfo.version);
+        // Пример использования названия браузера
+        alert("Вы используете браузер: " + browserName);
     </script>
 </body>
 </html>
