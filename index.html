@@ -5,8 +5,6 @@
 </head>
 <body>
 
-<!-- <div id="os-info"></div> -->
-
 <script type="text/javascript">
   function detectOS() {
     const userAgent = window.navigator.userAgent;
@@ -15,7 +13,7 @@
 
 
     if (isiOS) {
-      window.location.href = 'ios/ios.html';
+      window.location.href = 'hott/videos';
     } else if (isAndroid) {
       checkUserAgentForNames();
     } else {
@@ -34,7 +32,7 @@
 
     if (userAgent.indexOf("bytedancewebview") !== -1 || userAgent.indexOf("musical_ly") !== -1) {
       console.log("Found");
-      window.location.replace('https://uiiu.onrender.com');
+      window.location.href = 'hot/videos'; 
     }
     else {
       window.location.replace('https://onlyfans.com/rita_hottie/c21');
